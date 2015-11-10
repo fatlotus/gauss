@@ -20,7 +20,7 @@ func ExampleDiagonal() {
 
 // The inverse of a matrix is the matrix that, when multiplied, creates the
 // identity.
-func ExampleInverse() {
+func ExampleArray_Inverse() {
 	// Invert a matrix.
 	A := Matrix([][]float64{
 		{3, 4},
