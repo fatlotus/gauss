@@ -3,6 +3,7 @@ package gauss
 import (
 	"fmt"
 	"math"
+	"math/rand"
 )
 
 // Array represents a dense vector, matrix, or higher-order tensor.
@@ -69,6 +70,24 @@ func Zero(size ...int) Array {
 		Shape: size,
 	}
 }
+
+// Random allocates and fills an Array of the given size with pseudorandom
+// data from the range [0, 1).
+func Random(size ...int) Array {
+	prod := 1
+	for _, comp := range size {
+		prod *= comp
+	}
+	data := make([]float64, prod)
+	for i := range data {
+		data[i] = rand.Float64()
+	}
+	return Array{
+		Data:  data,
+		Shape: size,
+	}
+}
+
 
 // Returns a pointer to the given element of the matrix, checking bounds.
 func (a *Array) I(comps ...int) *float64 {

@@ -5,6 +5,13 @@ import (
 	"testing"
 )
 
+func BenchmarkSvd(b *testing.B) {
+	M := Random(200, 200)
+	for i := 0; i < b.N; i++ {
+		SVD(M)
+	}
+}
+
 // A diagonal matrix is one where all the entries A(ii) are set to the values
 // of the given matrix. In this example, we construct a diagonal matrix of rank
 // three.

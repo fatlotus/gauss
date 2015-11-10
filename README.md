@@ -27,6 +27,7 @@ in common types of matrices:
 	i := Identity(4) // an identity matrix of dim 4
 	z := Zero(3) // a zero-vector of length 3
 	d := Diagonal(a) // a diagonal matrix
+	r := Random(5) // random 5x5 matrix from [0, 1)
 
 Once you've created several Arrays, you can do elementary mathematical
 operations on them:
