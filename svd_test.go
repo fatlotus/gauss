@@ -18,6 +18,19 @@ func ExampleDiagonal() {
 	//  [0 0 0 0]]
 }
 
+// The inverse of a matrix is the matrix that, when multiplied, creates the
+// identity.
+func ExampleInverse() {
+	// Invert a matrix.
+	A := Matrix([][]float64{
+		{3, 4},
+		{5, 6},
+	})
+	AAi := Product(A, A.Inverse())
+	fmt.Printf("A Ai = I? %v\n", Equals(AAi, Identity(2), 0.0001))
+	// Output: A Ai = I? true
+}
+
 // Here we use the singular value decomposition of a matrix to invert it.
 // Because A = U S Vt, where U and Vt are both orthogonal and S is diagonal,
 // is composed of easily invertible matrices, the product is easy to compute.

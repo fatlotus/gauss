@@ -34,6 +34,7 @@ operations on them:
 	c := Product(m, a)
 	d := Sum(z, c)
 	e := m.Transpose()
+	g := m.Inverse()
 
 Each of the above allocates a new buffer to store the result.
 

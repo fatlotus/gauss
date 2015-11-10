@@ -14,6 +14,19 @@ func Diagonal(diag []float64) Array {
 	return mat
 }
 
+// Inverse returns the inverse of A.
+//
+// When multiplied, A and A.Inverse() equals the identity matrix.
+func (a Array) Inverse() Array {
+	u, s, v := SVD(a)
+	for i := range s.Data {
+		s.Data[i] = 1 / s.Data[i]
+	}
+	sm := Diagonal(s.Data)
+	ut := u.Transpose()
+	return Product(v, Product(sm, ut))
+}
+
 func hypot(a, b float64) float64 {
 	var r float64
 	if math.Abs(a) > math.Abs(b) {
