@@ -56,6 +56,18 @@ func ExampleEquals() {
 	// ([2 3 4] =?= [2.0000000000000004 3 4]) = true
 }
 
+// The Scale function can be used to resize a vector to a different length.
+func ExampleArray_Scale() {
+	a := Vector([]float64{3, 4})
+	fmt.Printf("norm of a: %.2f\n", a.Norm(2))
+
+	a2 := a.Scale(1.0 / a.Norm(2))
+	fmt.Printf("norm of a2: %.2f\n", a2.Norm(2))
+	// Output:
+	// norm of a: 5.00
+	// norm of a2: 1.00
+}
+
 func TestEqual(t *testing.T) {
 	a := Vector([]float64{2, 3, 4})
 	if !Equals(a, a, 0) {

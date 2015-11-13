@@ -94,7 +94,7 @@ func (a *Array) I(comps ...int) *float64 {
 	index := 0
 	for i, dimension := range a.Shape {
 		if comps[i] >= dimension || comps[i] < 0 {
-			panic("out of range")
+			panic(fmt.Sprintf("component %d must satisfy 0 <= %d < %d", i, comps[i], dimension))
 		}
 		index = index*dimension + comps[i]
 	}
@@ -135,6 +135,15 @@ func Sum(a, b Array) Array {
 	}
 
 	return result
+}
+
+// Scales the Array by the given constant value.
+func (a Array) Scale(scale float64) Array {
+	copy := Zero(a.Shape...)
+	for i := range copy.Data {
+		copy.Data[i] = a.Data[i] * scale
+	}
+	return copy
 }
 
 // Computes the matrix product of the two arrays. It is an error to multiply
